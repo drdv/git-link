@@ -538,8 +538,9 @@ return (FILENAME . REVISION) otherwise nil."
                                   (format "L%s-L%s" start end)
                                 (format "L%s" start)))))))
 
-(defun git-link-gitlab (hostname dirname filename branch commit start end)
-  (format "https://%s/%s/-/blob/%s/%s"
+(defun git-link-gitlab (hostname dirname filename branch commit start end &optional scheme)
+  (format "%s://%s/%s/-/blob/%s/%s"
+	  (or scheme "https")
 	  hostname
 	  dirname
 	  (or branch commit)
@@ -593,8 +594,9 @@ return (FILENAME . REVISION) otherwise nil."
                                 (format "L%s-%s" start end)
                               (format "L%s" start)))))))
 
-(defun git-link-commit-gitlab (hostname dirname commit)
-  (format "https://%s/%s/-/commit/%s"
+(defun git-link-commit-gitlab (hostname dirname commit &optional scheme)
+  (format "%s://%s/%s/-/commit/%s"
+	  (or scheme "https")
 	  hostname
 	  dirname
 	  commit))
@@ -712,8 +714,9 @@ return (FILENAME . REVISION) otherwise nil."
             dir-file-name
             commit)))
 
-(defun git-link-homepage-github (hostname dirname)
-  (format "https://%s/%s"
+(defun git-link-homepage-github (hostname dirname &optional scheme)
+  (format "%s://%s/%s"
+	  (or scheme "https")
 	  hostname
 	  dirname))
 
